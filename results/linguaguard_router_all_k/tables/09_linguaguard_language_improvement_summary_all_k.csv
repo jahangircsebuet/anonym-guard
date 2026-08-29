@@ -1,0 +1,4 @@
+k_subset,n_languages,n_languages_improved,n_languages_same,n_languages_worse,mean_absolute_evasion_reduction,median_absolute_evasion_reduction,mean_relative_evasion_reduction,median_relative_evasion_reduction
+1,98,24,74,0,0.03288190838606886,0.0,0.9520000000000001,1.0
+2,98,97,1,0,0.22455590519112908,0.1875,0.8948576520005092,1.0
+3,98,35,63,0,0.03693782525650304,0.0,0.7196514222729056,0.9170454545454545

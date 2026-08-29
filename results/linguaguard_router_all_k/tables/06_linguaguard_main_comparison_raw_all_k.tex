@@ -1,0 +1,27 @@
+\begin{tabular}{rllrrrrrrrrrrrrrr}
+\toprule
+k\_subset & method & method\_label & n\_total & n\_gold\_unsafe & n\_valid & n\_error & n\_unknown & coverage\_rate & error\_rate & unknown\_rate & tp\_unsafe & fn\_unsafe\_strict & unsafe\_recall\_strict & evasion\_rate\_strict & absolute\_evasion\_reduction\_vs\_best\_single & relative\_evasion\_reduction\_vs\_best\_single \\
+\midrule
+1 & best\_single\_global & Best single global & 1836 & 1836 & 1836 & 0 & 0 & 1.0000 & 0.0000 & 0.0000 & 1777 & 59 & 0.9679 & 0.0321 & 0.0000 & 0.0000 \\
+1 & language\_top3\_majority & Language top-3 majority & 1836 & 1836 & 1836 & 0 & 0 & 1.0000 & 0.0000 & 0.0000 & 1608 & 228 & 0.8758 & 0.1242 & -0.0920 & -2.8644 \\
+1 & top1\_language\_router & Top-1 language router & 1836 & 1836 & 1836 & 0 & 0 & 1.0000 & 0.0000 & 0.0000 & 1786 & 50 & 0.9728 & 0.0272 & 0.0049 & 0.1525 \\
+1 & resource\_tier\_top3\_or & Resource-tier top-3 OR & 1836 & 1836 & 1836 & 0 & 0 & 1.0000 & 0.0000 & 0.0000 & 1835 & 1 & 0.9995 & 0.0005 & 0.0316 & 0.9831 \\
+1 & global\_top3\_or & Global top-3 OR & 1836 & 1836 & 1836 & 0 & 0 & 1.0000 & 0.0000 & 0.0000 & 1834 & 2 & 0.9989 & 0.0011 & 0.0310 & 0.9661 \\
+1 & linguaguard\_top3\_language\_or & LinguaGuard top-3 language OR & 1836 & 1836 & 1836 & 0 & 0 & 1.0000 & 0.0000 & 0.0000 & 1834 & 2 & 0.9989 & 0.0011 & 0.0310 & 0.9661 \\
+1 & oracle\_or\_upper\_bound & All-model OR upper bound & 1836 & 1836 & 1836 & 0 & 0 & 1.0000 & 0.0000 & 0.0000 & 1836 & 0 & 1.0000 & 0.0000 & 0.0321 & 1.0000 \\
+2 & best\_single\_global & Best single global & 3362 & 3362 & 3361 & 0 & 1 & 0.9997 & 0.0000 & 0.0003 & 2532 & 830 & 0.7531 & 0.2469 & 0.0000 & 0.0000 \\
+2 & language\_top3\_majority & Language top-3 majority & 3362 & 3362 & 3362 & 0 & 0 & 1.0000 & 0.0000 & 0.0000 & 2826 & 536 & 0.8406 & 0.1594 & 0.0874 & 0.3542 \\
+2 & top1\_language\_router & Top-1 language router & 3362 & 3362 & 3357 & 0 & 5 & 0.9985 & 0.0000 & 0.0015 & 3140 & 222 & 0.9340 & 0.0660 & 0.1808 & 0.7325 \\
+2 & resource\_tier\_top3\_or & Resource-tier top-3 OR & 3362 & 3362 & 3361 & 0 & 1 & 0.9997 & 0.0000 & 0.0003 & 3238 & 124 & 0.9631 & 0.0369 & 0.2100 & 0.8506 \\
+2 & global\_top3\_or & Global top-3 OR & 3362 & 3362 & 3362 & 0 & 0 & 1.0000 & 0.0000 & 0.0000 & 3257 & 105 & 0.9688 & 0.0312 & 0.2156 & 0.8735 \\
+2 & linguaguard\_top3\_language\_or & LinguaGuard top-3 language OR & 3362 & 3362 & 3361 & 0 & 1 & 0.9997 & 0.0000 & 0.0003 & 3301 & 61 & 0.9819 & 0.0181 & 0.2287 & 0.9265 \\
+2 & oracle\_or\_upper\_bound & All-model OR upper bound & 3362 & 3362 & 3326 & 36 & 0 & 0.9893 & 0.0107 & 0.0000 & 3325 & 37 & 0.9890 & 0.0110 & 0.2359 & 0.9554 \\
+3 & best\_single\_global & Best single global & 4841 & 4841 & 4812 & 0 & 29 & 0.9940 & 0.0000 & 0.0060 & 4604 & 237 & 0.9510 & 0.0490 & 0.0000 & 0.0000 \\
+3 & language\_top3\_majority & Language top-3 majority & 4841 & 4841 & 4841 & 0 & 0 & 1.0000 & 0.0000 & 0.0000 & 3150 & 1691 & 0.6507 & 0.3493 & -0.3004 & -6.1350 \\
+3 & top1\_language\_router & Top-1 language router & 4841 & 4841 & 4813 & 0 & 28 & 0.9942 & 0.0000 & 0.0058 & 4685 & 156 & 0.9678 & 0.0322 & 0.0167 & 0.3418 \\
+3 & resource\_tier\_top3\_or & Resource-tier top-3 OR & 4841 & 4841 & 4831 & 0 & 10 & 0.9979 & 0.0000 & 0.0021 & 4783 & 58 & 0.9880 & 0.0120 & 0.0370 & 0.7553 \\
+3 & global\_top3\_or & Global top-3 OR & 4841 & 4841 & 4831 & 0 & 10 & 0.9979 & 0.0000 & 0.0021 & 4783 & 58 & 0.9880 & 0.0120 & 0.0370 & 0.7553 \\
+3 & linguaguard\_top3\_language\_or & LinguaGuard top-3 language OR & 4841 & 4841 & 4831 & 0 & 10 & 0.9979 & 0.0000 & 0.0021 & 4783 & 58 & 0.9880 & 0.0120 & 0.0370 & 0.7553 \\
+3 & oracle\_or\_upper\_bound & All-model OR upper bound & 4841 & 4841 & 4789 & 52 & 0 & 0.9893 & 0.0107 & 0.0000 & 4788 & 53 & 0.9891 & 0.0109 & 0.0380 & 0.7764 \\
+\bottomrule
+\end{tabular}

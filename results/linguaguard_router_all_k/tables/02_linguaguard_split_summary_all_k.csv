@@ -1,0 +1,7 @@
+k_subset,split,n_rows,n_prompts,n_roots,n_languages,n_models
+1,test,21842,1836,360,98,12
+1,validation,42423,3567,839,98,12
+2,test,35646,3362,488,98,12
+2,validation,74781,7057,1138,98,12
+3,test,24176,4841,570,98,5
+3,validation,51185,10244,1331,98,5

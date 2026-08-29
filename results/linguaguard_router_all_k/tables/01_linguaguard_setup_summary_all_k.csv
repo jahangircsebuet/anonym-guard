@@ -1,0 +1,58 @@
+k_subset,Field,Value
+1,k_subset,1
+1,test_size,0.3
+1,seed,42
+1,top_r,3
+1,total_rows,64265
+1,total_prompt_keys,5403
+1,total_root_prompts,1199
+1,languages,98
+1,models_with_rows,12
+1,categories,19
+1,gold_labels,"{""unsafe"": 64265}"
+1,validation_rows,42423
+1,validation_prompts,3567
+1,validation_roots,839
+1,test_rows,21842
+1,test_prompts,1836
+1,test_roots,360
+1,global_top3_models,"wildguard, crest, qwen3guard_gen"
+1,global_top3_models_short,"WildGuard, CREST, Qwen3Guard"
+2,k_subset,2
+2,test_size,0.3
+2,seed,42
+2,top_r,3
+2,total_rows,110427
+2,total_prompt_keys,10419
+2,total_root_prompts,1626
+2,languages,98
+2,models_with_rows,12
+2,categories,19
+2,gold_labels,"{""unsafe"": 110427}"
+2,validation_rows,74781
+2,validation_prompts,7057
+2,validation_roots,1138
+2,test_rows,35646
+2,test_prompts,3362
+2,test_roots,488
+2,global_top3_models,"crest, wildguard, qwen3guard_gen"
+2,global_top3_models_short,"CREST, WildGuard, Qwen3Guard"
+3,k_subset,3
+3,test_size,0.3
+3,seed,42
+3,top_r,3
+3,total_rows,75361
+3,total_prompt_keys,15085
+3,total_root_prompts,1901
+3,languages,98
+3,models_with_rows,5
+3,categories,19
+3,gold_labels,"{""unsafe"": 75361}"
+3,validation_rows,51185
+3,validation_prompts,10244
+3,validation_roots,1331
+3,test_rows,24176
+3,test_prompts,4841
+3,test_roots,570
+3,global_top3_models,"wildguard, qwen3guard_gen, nemotron"
+3,global_top3_models_short,"WildGuard, Qwen3Guard, Nemotron"
