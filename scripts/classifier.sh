@@ -11,7 +11,7 @@ run_classifier () {
   shift 3
 
   local input_file="${PROJECT_ROOT}/data/stratified/stratified_topk_k${k}_with_prompts.jsonl"
-  local output_dir="${PROJECT_ROOT}/data/classified/${model_name}"
+  local output_dir="${PROJECT_ROOT}/data/classified-new/${model_name}"
   local output_file="${output_dir}/${model_name}_dataset_k=${k}.jsonl"
 
   mkdir -p "${output_dir}"
