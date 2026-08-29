@@ -1,0 +1,11 @@
+k_subset,classifier_name,n_languages_best,model_short
+1,wildguard,95,WildGuard
+1,crest,1,CREST
+1,guardreasoner,1,GuardReasoner
+1,qwen3guard_gen,1,Qwen3Guard
+2,wildguard,66,WildGuard
+2,crest,17,CREST
+2,qwen3guard_gen,10,Qwen3Guard
+2,guardreasoner,5,GuardReasoner
+3,wildguard,92,WildGuard
+3,qwen3guard_gen,6,Qwen3Guard

@@ -1,0 +1,4 @@
+k_subset,qwen3guard_gen,llamaguard3,llamaguard_permissive,nemotron,gpt_oss_safeguard,shieldgemma,xguard,crest,wildguard,aprielguard,guardreasoner,mdjudge
+1,1.0,1.0,1.0,1.0,0.8943179714973163,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+2,1.0,1.0,1.0,1.0,0.39619925136769363,1.0,0.2025146367213744,0.9999040214991842,1.0,1.0,1.0,1.0
+3,1.0,1.0,1.0,1.0,,,,,0.9957573748757044,,,
