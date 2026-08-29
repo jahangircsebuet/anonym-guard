@@ -1,0 +1,4 @@
+k_subset,expected_language_category_cells,observed_language_category_cells,missing_language_category_cells,min_count_per_cell,max_count_per_cell,mean_count_per_cell,median_count_per_cell,cells_with_count_0,cells_with_count_1,cells_with_count_2,cells_with_count_3,cells_with_count_4,cells_with_count_5,cells_with_count_at_least_k
+1,1862,1862,0,1,4,2.90171858216971,3.0,0,140,181,1263,278,0,1862
+2,1862,1862,0,1,8,5.595596133190118,6.0,0,98,42,46,149,161,1764
+3,1862,1862,0,1,12,8.101503759398497,9.0,0,98,0,42,46,49,1764

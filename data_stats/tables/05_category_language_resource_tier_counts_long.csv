@@ -1,0 +1,172 @@
+k_subset,category,language_resource_tier,count
+1,Controlled/Regulated Substances,high,35
+1,Controlled/Regulated Substances,low,214
+1,Controlled/Regulated Substances,medium,63
+1,Copyright/Trademark/Plagiarism,high,32
+1,Copyright/Trademark/Plagiarism,low,196
+1,Copyright/Trademark/Plagiarism,medium,61
+1,Criminal Planning/Confessions,high,35
+1,Criminal Planning/Confessions,low,215
+1,Criminal Planning/Confessions,medium,63
+1,Fraud/Deception,high,34
+1,Fraud/Deception,low,206
+1,Fraud/Deception,medium,63
+1,Guns and Illegal Weapons,high,35
+1,Guns and Illegal Weapons,low,209
+1,Guns and Illegal Weapons,medium,63
+1,Harassment,high,34
+1,Harassment,low,212
+1,Harassment,medium,63
+1,Hate/Identity Hate,high,35
+1,Hate/Identity Hate,low,217
+1,Hate/Identity Hate,medium,63
+1,High Risk Gov Decision Making,high,27
+1,High Risk Gov Decision Making,low,162
+1,High Risk Gov Decision Making,medium,54
+1,Illegal Activity,high,12
+1,Illegal Activity,low,65
+1,Illegal Activity,medium,21
+1,Malware,high,32
+1,Malware,low,183
+1,Malware,medium,62
+1,PII/Privacy,high,35
+1,PII/Privacy,low,214
+1,PII/Privacy,medium,63
+1,Political/Misinformation/Conspiracy,high,34
+1,Political/Misinformation/Conspiracy,low,209
+1,Political/Misinformation/Conspiracy,medium,63
+1,Profanity,high,34
+1,Profanity,low,209
+1,Profanity,medium,63
+1,Sexual,high,35
+1,Sexual,low,210
+1,Sexual,medium,63
+1,Sexual (minor),high,29
+1,Sexual (minor),low,163
+1,Sexual (minor),medium,61
+1,Suicide and Self Harm,high,34
+1,Suicide and Self Harm,low,208
+1,Suicide and Self Harm,medium,63
+1,Threat,high,30
+1,Threat,low,176
+1,Threat,medium,62
+1,Unauthorized Advice,high,30
+1,Unauthorized Advice,low,179
+1,Unauthorized Advice,medium,62
+1,Violence,high,34
+1,Violence,low,211
+1,Violence,medium,63
+2,Controlled/Regulated Substances,high,69
+2,Controlled/Regulated Substances,low,425
+2,Controlled/Regulated Substances,medium,126
+2,Copyright/Trademark/Plagiarism,high,60
+2,Copyright/Trademark/Plagiarism,low,370
+2,Copyright/Trademark/Plagiarism,medium,120
+2,Criminal Planning/Confessions,high,69
+2,Criminal Planning/Confessions,low,427
+2,Criminal Planning/Confessions,medium,126
+2,Fraud/Deception,high,67
+2,Fraud/Deception,low,402
+2,Fraud/Deception,medium,126
+2,Guns and Illegal Weapons,high,69
+2,Guns and Illegal Weapons,low,417
+2,Guns and Illegal Weapons,medium,126
+2,Harassment,high,68
+2,Harassment,low,422
+2,Harassment,medium,126
+2,Hate/Identity Hate,high,69
+2,Hate/Identity Hate,low,430
+2,Hate/Identity Hate,medium,126
+2,High Risk Gov Decision Making,high,51
+2,High Risk Gov Decision Making,low,291
+2,High Risk Gov Decision Making,medium,102
+2,Illegal Activity,high,12
+2,Illegal Activity,low,65
+2,Illegal Activity,medium,21
+2,Malware,high,59
+2,Malware,low,337
+2,Malware,medium,122
+2,PII/Privacy,high,70
+2,PII/Privacy,low,426
+2,PII/Privacy,medium,126
+2,Political/Misinformation/Conspiracy,high,68
+2,Political/Misinformation/Conspiracy,low,415
+2,Political/Misinformation/Conspiracy,medium,126
+2,Profanity,high,68
+2,Profanity,low,409
+2,Profanity,medium,126
+2,Sexual,high,70
+2,Sexual,low,420
+2,Sexual,medium,126
+2,Sexual (minor),high,55
+2,Sexual (minor),low,299
+2,Sexual (minor),medium,114
+2,Suicide and Self Harm,high,68
+2,Suicide and Self Harm,low,410
+2,Suicide and Self Harm,medium,126
+2,Threat,high,53
+2,Threat,low,310
+2,Threat,medium,114
+2,Unauthorized Advice,high,58
+2,Unauthorized Advice,low,329
+2,Unauthorized Advice,medium,119
+2,Violence,high,68
+2,Violence,low,420
+2,Violence,medium,126
+3,Controlled/Regulated Substances,high,103
+3,Controlled/Regulated Substances,low,636
+3,Controlled/Regulated Substances,medium,189
+3,Copyright/Trademark/Plagiarism,high,81
+3,Copyright/Trademark/Plagiarism,low,513
+3,Copyright/Trademark/Plagiarism,medium,169
+3,Criminal Planning/Confessions,high,103
+3,Criminal Planning/Confessions,low,639
+3,Criminal Planning/Confessions,medium,189
+3,Fraud/Deception,high,98
+3,Fraud/Deception,low,581
+3,Fraud/Deception,medium,189
+3,Guns and Illegal Weapons,high,103
+3,Guns and Illegal Weapons,low,622
+3,Guns and Illegal Weapons,medium,189
+3,Harassment,high,102
+3,Harassment,low,631
+3,Harassment,medium,189
+3,Hate/Identity Hate,high,103
+3,Hate/Identity Hate,low,642
+3,Hate/Identity Hate,medium,189
+3,High Risk Gov Decision Making,high,67
+3,High Risk Gov Decision Making,low,389
+3,High Risk Gov Decision Making,medium,137
+3,Illegal Activity,high,12
+3,Illegal Activity,low,65
+3,Illegal Activity,medium,21
+3,Malware,high,83
+3,Malware,low,464
+3,Malware,medium,174
+3,PII/Privacy,high,104
+3,PII/Privacy,low,637
+3,PII/Privacy,medium,189
+3,Political/Misinformation/Conspiracy,high,101
+3,Political/Misinformation/Conspiracy,low,615
+3,Political/Misinformation/Conspiracy,medium,189
+3,Profanity,high,101
+3,Profanity,low,600
+3,Profanity,medium,189
+3,Sexual,high,105
+3,Sexual,low,630
+3,Sexual,medium,189
+3,Sexual (minor),high,77
+3,Sexual (minor),low,409
+3,Sexual (minor),medium,161
+3,Suicide and Self Harm,high,102
+3,Suicide and Self Harm,low,605
+3,Suicide and Self Harm,medium,189
+3,Threat,high,70
+3,Threat,low,401
+3,Threat,medium,148
+3,Unauthorized Advice,high,80
+3,Unauthorized Advice,low,442
+3,Unauthorized Advice,medium,162
+3,Violence,high,101
+3,Violence,low,628
+3,Violence,medium,189

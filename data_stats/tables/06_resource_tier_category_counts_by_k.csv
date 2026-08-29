@@ -1,0 +1,172 @@
+k_subset,language_resource_tier,category,count
+1,high,Controlled/Regulated Substances,35
+1,high,Copyright/Trademark/Plagiarism,32
+1,high,Criminal Planning/Confessions,35
+1,high,Fraud/Deception,34
+1,high,Guns and Illegal Weapons,35
+1,high,Harassment,34
+1,high,Hate/Identity Hate,35
+1,high,High Risk Gov Decision Making,27
+1,high,Illegal Activity,12
+1,high,Malware,32
+1,high,PII/Privacy,35
+1,high,Political/Misinformation/Conspiracy,34
+1,high,Profanity,34
+1,high,Sexual,35
+1,high,Sexual (minor),29
+1,high,Suicide and Self Harm,34
+1,high,Threat,30
+1,high,Unauthorized Advice,30
+1,high,Violence,34
+1,low,Controlled/Regulated Substances,214
+1,low,Copyright/Trademark/Plagiarism,196
+1,low,Criminal Planning/Confessions,215
+1,low,Fraud/Deception,206
+1,low,Guns and Illegal Weapons,209
+1,low,Harassment,212
+1,low,Hate/Identity Hate,217
+1,low,High Risk Gov Decision Making,162
+1,low,Illegal Activity,65
+1,low,Malware,183
+1,low,PII/Privacy,214
+1,low,Political/Misinformation/Conspiracy,209
+1,low,Profanity,209
+1,low,Sexual,210
+1,low,Sexual (minor),163
+1,low,Suicide and Self Harm,208
+1,low,Threat,176
+1,low,Unauthorized Advice,179
+1,low,Violence,211
+1,medium,Controlled/Regulated Substances,63
+1,medium,Copyright/Trademark/Plagiarism,61
+1,medium,Criminal Planning/Confessions,63
+1,medium,Fraud/Deception,63
+1,medium,Guns and Illegal Weapons,63
+1,medium,Harassment,63
+1,medium,Hate/Identity Hate,63
+1,medium,High Risk Gov Decision Making,54
+1,medium,Illegal Activity,21
+1,medium,Malware,62
+1,medium,PII/Privacy,63
+1,medium,Political/Misinformation/Conspiracy,63
+1,medium,Profanity,63
+1,medium,Sexual,63
+1,medium,Sexual (minor),61
+1,medium,Suicide and Self Harm,63
+1,medium,Threat,62
+1,medium,Unauthorized Advice,62
+1,medium,Violence,63
+2,high,Controlled/Regulated Substances,69
+2,high,Copyright/Trademark/Plagiarism,60
+2,high,Criminal Planning/Confessions,69
+2,high,Fraud/Deception,67
+2,high,Guns and Illegal Weapons,69
+2,high,Harassment,68
+2,high,Hate/Identity Hate,69
+2,high,High Risk Gov Decision Making,51
+2,high,Illegal Activity,12
+2,high,Malware,59
+2,high,PII/Privacy,70
+2,high,Political/Misinformation/Conspiracy,68
+2,high,Profanity,68
+2,high,Sexual,70
+2,high,Sexual (minor),55
+2,high,Suicide and Self Harm,68
+2,high,Threat,53
+2,high,Unauthorized Advice,58
+2,high,Violence,68
+2,low,Controlled/Regulated Substances,425
+2,low,Copyright/Trademark/Plagiarism,370
+2,low,Criminal Planning/Confessions,427
+2,low,Fraud/Deception,402
+2,low,Guns and Illegal Weapons,417
+2,low,Harassment,422
+2,low,Hate/Identity Hate,430
+2,low,High Risk Gov Decision Making,291
+2,low,Illegal Activity,65
+2,low,Malware,337
+2,low,PII/Privacy,426
+2,low,Political/Misinformation/Conspiracy,415
+2,low,Profanity,409
+2,low,Sexual,420
+2,low,Sexual (minor),299
+2,low,Suicide and Self Harm,410
+2,low,Threat,310
+2,low,Unauthorized Advice,329
+2,low,Violence,420
+2,medium,Controlled/Regulated Substances,126
+2,medium,Copyright/Trademark/Plagiarism,120
+2,medium,Criminal Planning/Confessions,126
+2,medium,Fraud/Deception,126
+2,medium,Guns and Illegal Weapons,126
+2,medium,Harassment,126
+2,medium,Hate/Identity Hate,126
+2,medium,High Risk Gov Decision Making,102
+2,medium,Illegal Activity,21
+2,medium,Malware,122
+2,medium,PII/Privacy,126
+2,medium,Political/Misinformation/Conspiracy,126
+2,medium,Profanity,126
+2,medium,Sexual,126
+2,medium,Sexual (minor),114
+2,medium,Suicide and Self Harm,126
+2,medium,Threat,114
+2,medium,Unauthorized Advice,119
+2,medium,Violence,126
+3,high,Controlled/Regulated Substances,103
+3,high,Copyright/Trademark/Plagiarism,81
+3,high,Criminal Planning/Confessions,103
+3,high,Fraud/Deception,98
+3,high,Guns and Illegal Weapons,103
+3,high,Harassment,102
+3,high,Hate/Identity Hate,103
+3,high,High Risk Gov Decision Making,67
+3,high,Illegal Activity,12
+3,high,Malware,83
+3,high,PII/Privacy,104
+3,high,Political/Misinformation/Conspiracy,101
+3,high,Profanity,101
+3,high,Sexual,105
+3,high,Sexual (minor),77
+3,high,Suicide and Self Harm,102
+3,high,Threat,70
+3,high,Unauthorized Advice,80
+3,high,Violence,101
+3,low,Controlled/Regulated Substances,636
+3,low,Copyright/Trademark/Plagiarism,513
+3,low,Criminal Planning/Confessions,639
+3,low,Fraud/Deception,581
+3,low,Guns and Illegal Weapons,622
+3,low,Harassment,631
+3,low,Hate/Identity Hate,642
+3,low,High Risk Gov Decision Making,389
+3,low,Illegal Activity,65
+3,low,Malware,464
+3,low,PII/Privacy,637
+3,low,Political/Misinformation/Conspiracy,615
+3,low,Profanity,600
+3,low,Sexual,630
+3,low,Sexual (minor),409
+3,low,Suicide and Self Harm,605
+3,low,Threat,401
+3,low,Unauthorized Advice,442
+3,low,Violence,628
+3,medium,Controlled/Regulated Substances,189
+3,medium,Copyright/Trademark/Plagiarism,169
+3,medium,Criminal Planning/Confessions,189
+3,medium,Fraud/Deception,189
+3,medium,Guns and Illegal Weapons,189
+3,medium,Harassment,189
+3,medium,Hate/Identity Hate,189
+3,medium,High Risk Gov Decision Making,137
+3,medium,Illegal Activity,21
+3,medium,Malware,174
+3,medium,PII/Privacy,189
+3,medium,Political/Misinformation/Conspiracy,189
+3,medium,Profanity,189
+3,medium,Sexual,189
+3,medium,Sexual (minor),161
+3,medium,Suicide and Self Harm,189
+3,medium,Threat,148
+3,medium,Unauthorized Advice,162
+3,medium,Violence,189

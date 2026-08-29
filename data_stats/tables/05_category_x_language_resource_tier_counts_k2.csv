@@ -1,0 +1,20 @@
+category,high,low,medium
+Controlled/Regulated Substances,69,425,126
+Copyright/Trademark/Plagiarism,60,370,120
+Criminal Planning/Confessions,69,427,126
+Fraud/Deception,67,402,126
+Guns and Illegal Weapons,69,417,126
+Harassment,68,422,126
+Hate/Identity Hate,69,430,126
+High Risk Gov Decision Making,51,291,102
+Illegal Activity,12,65,21
+Malware,59,337,122
+PII/Privacy,70,426,126
+Political/Misinformation/Conspiracy,68,415,126
+Profanity,68,409,126
+Sexual,70,420,126
+Sexual (minor),55,299,114
+Suicide and Self Harm,68,410,126
+Threat,53,310,114
+Unauthorized Advice,58,329,119
+Violence,68,420,126
