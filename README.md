@@ -39,6 +39,11 @@ analysis
 │   ├── k_aware_result_analysis.py
 │   ├── dataset_stats_by_k.py
 │   └── linguaguard_router_pipeline_k123.py
+│   └── dataset-creation/ (we can provide more details upon request)
+│       ├── translation_quality_based_sampling.py
+│       ├── translation_quality_based_sampling.md
+│       ├── translate.py
+│       └── translate.md
 ├── data/
 │   ├── stratified/
 │   │   ├── stratified_topk_k1_with_prompts.jsonl
@@ -77,7 +82,7 @@ Some guardrail models may require gated or license-controlled access through the
 
 ## 4. Data format
 
-Each benchmark JSONL row should contain fields similar to:
+Each dataset (directory: **PROJECT_ROOT/data/stratified**) row contains fields similar to:
 
 ```json
 {
@@ -103,7 +108,7 @@ Each benchmark JSONL row should contain fields similar to:
 
 Important terminology: the field `tier` means **language-resource tier**, not harm severity.
 
-After guardrail classification, each row additionally contains a nested `classifier` object:
+After guardrail classification (directory: **PROJECT_ROOT/data/classified**), each row additionally contains a nested `classifier` object:
 
 ```json
 {
@@ -120,82 +125,115 @@ After guardrail classification, each row additionally contains a nested `classif
 
 ## 5. Running the experiments
 
-Before running any stage, set the artifact root and create output directories:
+Before running any stage, set the artifact root, **the PROJECT_ROOT in each .sh file**:
 
 ```bash
-export PROJECT_ROOT="$(pwd)"
-mkdir -p "$PROJECT_ROOT/data/Classified"
-mkdir -p "$PROJECT_ROOT/results/k_aware_analysis"
-mkdir -p "$PROJECT_ROOT/results/linguaguard_router_all_k"
-mkdir -p "$PROJECT_ROOT/logs"
+PROJECT_ROOT="/path/to/guardbreach-artifact"
+```
+
+Then make execcutable all the .sh files:
+```bash
 chmod +x scripts/*.sh
 ```
 
-### 5.1 Guardrail classification
+### 5.1 Guardrail classification (this run will be expensive, classified data are there in classified folder)
 
-Run the classification wrapper:
 
-```bash
-CUDA_VISIBLE_DEVICES=0 nohup ./scripts/classifier.sh \
-  >> "$PROJECT_ROOT/logs/prompt_classifier.log" 2>&1 &
-```
-
-The wrapper should call `src/multi_guard_prompt_classifier.py` for each selected guardrail model and each requested `k` subset. A single direct invocation has the form:
+Then create directories (after doing **cd to the PROJECT_ROOT/data directory**):
 
 ```bash
-python src/multi_guard_prompt_classifier.py \
-  --input "$PROJECT_ROOT/data/strategy1_benchmarks/benchmark_strategy1_topk_k2_with_prompts.jsonl" \
-  --output "$PROJECT_ROOT/data/classified/qwen3guard_gen_k2.jsonl" \
-  --classifier qwen3guard_gen \
-  --device cuda:0 \
-  --torch_dtype bfloat16 \
-  --max_new_tokens 100 \
-  --max_input_length 4096
+mkdir classified-new
 ```
 
-Supported classifier names in the current classifier script include:
+Then keep active the commands for a single model you want to run the classification/inference (keep commented the other commands for the other models). Let's say you want to run the inference for model: GuardReasoner.
+**keep active the GuardReasoner, keep commented the other model command like below**:
+```bash
+# ============================================================
+# GuardReasoner
+# ============================================================
 
-```text
-guardreasoner
-llamaguard3
-llamaguard_permissive
-gpt_oss_safeguard
-crest
-mdjudge
-xguard
-aprielguard
-wildguard
-nemotron
-shieldgemma
-qwen3guard_gen
+run_classifier guardreasoner guardreasoner 1 \
+  --device auto
+
+run_classifier guardreasoner guardreasoner 2 \
+  --device auto
+
+run_classifier guardreasoner guardreasoner 3 \
+  --device auto
+
+# ============================================================
+# # MD-Judge
+# # ============================================================
+
+# run_classifier mdjudge mdjudge 1 \
+#   --device auto
+
+# run_classifier mdjudge mdjudge 2 \
+#   --device auto
+
+# run_classifier mdjudge mdjudge 3 \
+#   --device auto
+
+# ============================================================
+# # X-Guard
+# # ============================================================
+
+# run_classifier xguard xguard 1 \
+#   --device auto \
+#   --max_new_tokens 512
+
+# run_classifier xguard xguard 2 \
+#   --device auto \
+#   --max_new_tokens 512
+
+# run_classifier xguard xguard 3 \
+#   --device auto \
+#   --max_new_tokens 512
+```
+
+Then execute the script.sh file (keep one command active at a time, comment the other commands). let's say you want to run the classifier.sh then keep active the command for the classifier and keep commented other commands like below:
+
+```bash
+CUDA_VISIBLE_DEVICES=3 nohup "${PROJECT_ROOT}/scripts/classifier.sh" \
+  >> "${PROJECT_ROOT}/logs/classifier.log" 2>&1 &
+
+# CUDA_VISIBLE_DEVICES=3 nohup "${PROJECT_ROOT}/scripts/results.sh" \
+#   >> "${PROJECT_ROOT}/logs/results.log" 2>&1 &
+
+# CUDA_VISIBLE_DEVICES=3 nohup "${PROJECT_ROOT}/scripts/router.sh" \
+#   >> "${PROJECT_ROOT}/logs/router.log" 2>&1 &
+
+# CUDA_VISIBLE_DEVICES=3 nohup "${PROJECT_ROOT}/scripts/data.sh" \
+#   >> "${PROJECT_ROOT}/logs/data.log" 2>&1 &
+```
+
+Now run the script.sh using below command:
+```bash
+./script.sh
 ```
 
 Expected output:
 
 ```text
 data/Classified/*.jsonl
-logs/prompt_classifier.log
+logs/classifier.log
 ```
 
 Each output JSONL file should contain one classified row per input prompt, with the original prompt metadata and a nested `classifier` result.
 
 ### 5.2 Dataset statistics by k
 
-Run dataset-statistics analysis:
+Run dataset analysis wrapper:
 
 ```bash
-python src/dataset_stats_by_k.py \
-  --files \
-    1="$PROJECT_ROOT/data/strategy1_benchmarks/benchmark_strategy1_topk_k1_with_prompts.jsonl" \
-    2="$PROJECT_ROOT/data/strategy1_benchmarks/benchmark_strategy1_topk_k2_with_prompts.jsonl" \
-    3="$PROJECT_ROOT/data/strategy1_benchmarks/benchmark_strategy1_topk_k3_with_prompts.jsonl" \
-  --outdir "$PROJECT_ROOT/results/dataset_stats_by_k"
+CUDA_VISIBLE_DEVICES=0 nohup ./scripts/data.sh \
+  >> "$PROJECT_ROOT/logs/result_analysis.log" 2>&1 &
 ```
 
 Expected outputs include:
 
 ```text
-results/dataset_stats_by_k/combined_cleaned_all_k.csv
+data_stats/combined_cleaned_all_k.csv
 results/dataset_stats_by_k/dataset_stats_by_k_report.md
 results/dataset_stats_by_k/tables/overall_summary_by_k.csv
 results/dataset_stats_by_k/tables/cell_balance_summary_by_k.csv
@@ -212,18 +250,6 @@ Run the main result-analysis wrapper:
 ```bash
 CUDA_VISIBLE_DEVICES=0 nohup ./scripts/results.sh \
   >> "$PROJECT_ROOT/logs/result_analysis.log" 2>&1 &
-```
-
-A direct invocation is:
-
-```bash
-python src/guardbreach_k_aware_result_analysis.py \
-  --inputs "$PROJECT_ROOT/data/Classified/*.jsonl" \
-  --outdir "$PROJECT_ROOT/results/k_aware_analysis" \
-  --expected_k 1 2 3 \
-  --qwen_controversial_as_unsafe \
-  --min_n_per_language_model 3 \
-  --top_k_models_per_language 10
 ```
 
 Expected key outputs:
@@ -244,41 +270,29 @@ results/k_aware_analysis/figures/line_error_rate_by_k.png
 results/k_aware_analysis/figures/line_unknown_rate_by_k.png
 ```
 
-The file `analysis_ready_flat.csv` is the input to the LinguaGuard routing experiment.
+The file `analysis_ready_flat.csv` (this file is not uploaded due to large size, the code (**k_aware_result_analysis.py**) will generate this file) is the input to the LinguaGuard routing experiment.
 
 ### 5.4 LinguaGuard router and ensemble evaluation
 
 Run the router wrapper:
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 nohup ./scripts/router.sh \
-  >> "$PROJECT_ROOT/logs/router_performance.log" 2>&1 &
-```
-
-A direct invocation is:
-
-```bash
-python src/linguaguard_router_all_k_paper_only.py \
-  --input_csv "$PROJECT_ROOT/results/k_aware_analysis/analysis_ready_flat.csv" \
-  --outdir "$PROJECT_ROOT/results/linguaguard_router_all_k_paper" \
-  --k_values 1 2 3 \
-  --seed 42 \
-  --test_size 0.30 \
-  --top_r 3
+CUDA_VISIBLE_DEVICES=3 nohup "${PROJECT_ROOT}/scripts/router.sh" \
+  >> "${PROJECT_ROOT}/logs/router.log" 2>&1 &
 ```
 
 Expected key outputs:
 
 ```text
-results/linguaguard_router_all_k_paper/tables/00_model_availability_by_k.csv
-results/linguaguard_router_all_k_paper/tables/03_linguaguard_top3_global_all_k.csv
-results/linguaguard_router_all_k_paper/tables/04_linguaguard_top3_per_resource_tier_all_k.csv
-results/linguaguard_router_all_k_paper/tables/05_linguaguard_top3_per_language_all_k.csv
-results/linguaguard_router_all_k_paper/tables/07_linguaguard_main_comparison_paper_all_k.csv
-results/linguaguard_router_all_k_paper/tables/08_linguaguard_per_language_improvement_all_k.csv
-results/linguaguard_router_all_k_paper/tables/09_linguaguard_language_improvement_summary_all_k.csv
-results/linguaguard_router_all_k_paper/figures/linguaguard_strict_evasion_by_method_all_k.png
-results/linguaguard_router_all_k_paper/audit/linguaguard_test_predictions_audit_all_k.csv
+results/linguaguard_router_all_k/tables/00_model_availability_by_k.csv
+results/linguaguard_router_all_k/tables/03_linguaguard_top3_global_all_k.csv
+results/linguaguard_router_all_k/tables/04_linguaguard_top3_per_resource_tier_all_k.csv
+results/linguaguard_router_all_k/tables/05_linguaguard_top3_per_language_all_k.csv
+results/linguaguard_router_all_k/tables/07_linguaguard_main_comparison_paper_all_k.csv
+results/linguaguard_router_all_k/tables/08_linguaguard_per_language_improvement_all_k.csv
+results/linguaguard_router_all_k/tables/09_linguaguard_language_improvement_summary_all_k.csv
+results/linguaguard_router_all_k/figures/linguaguard_strict_evasion_by_method_all_k.png
+results/linguaguard_router_all_k/audit/linguaguard_test_predictions_audit_all_k.csv
 ```
 
 The router evaluates the following methods separately for each `k` subset:
@@ -295,21 +309,45 @@ All-model OR upper bound
 
 ---
 
-## 6. Reproducing paper tables and figures
+## 6. Paper Figure/Table to Artifact output mapping
 
-The following mapping connects artifact outputs to the main paper and appendix.
+The following mapping connects the numbered tables and figures in the paper to artifact outputs.
 
-| Paper component | Artifact output |
-|---|---|
-| Deployment-aware guardrail table | `results/k_aware_analysis/tables/01_model_metrics_by_k.csv` |
-| Model coverage/completion audit | `results/k_aware_analysis/tables/03_model_k_coverage_summary.csv` |
-| Strict evasion by model and k | `results/k_aware_analysis/figures/heatmap_evasion_model_by_k.png` |
-| Resource-tier degradation | `results/k_aware_analysis/tables/05_resource_tier_metrics_by_k_model.csv` and resource-tier figures |
-| Category-specific failures | `results/k_aware_analysis/tables/06_category_metrics_by_k_model.csv` and category figures |
-| Language-level rankings | `results/k_aware_analysis/tables/12_per_language_model_scores_by_k.csv`, `13_top10_models_per_language_by_k.csv`, `14_best_model_per_language_by_k.csv` |
-| Normalization audit | `results/k_aware_analysis/tables/11_normalization_audit.csv` |
-| LinguaGuard mitigation | `results/linguaguard_router_all_k_paper/tables/07_linguaguard_main_comparison_paper_all_k.csv` |
-| LinguaGuard per-language improvement | `results/linguaguard_router_all_k_paper/tables/08_linguaguard_per_language_improvement_all_k.csv` and `09_linguaguard_language_improvement_summary_all_k.csv` |
+| Paper item | Paper location | Artifact output |
+|---|---|---|
+| Table 1: Guardrail model variants evaluated in GuardBreach | Section 4.5 | This is a manuscript summary table. The evaluated classifier keys are implemented in `src/multi_guard_prompt_classifier.py`, and generated outputs are saved under `data/classified/<model_name>/<model_name>_dataset_k=<k>.jsonl`. |
+| Figure 1: Threat model for multilingual runtime guardrail evasion | Section 3 | Manuscript figure. Not generated by the result-analysis scripts. |
+| Figure 2: GuardBreach methodology workflow | Section 4 | Manuscript figure. Not generated by the result-analysis scripts. |
+| Figure 3: Unsafe recall by harm category and model for `k=1` | Section 5.1 | `results/k_aware_analysis/figures/heatmap_unsafe_recall_by_category_k1.png`; source table: `results/k_aware_analysis/tables/06_category_metrics_by_k_model.csv` |
+| Figure 4: Strict evasion by language-resource tier and model for `k=1` | Section 5.2 | `results/k_aware_analysis/figures/heatmap_evasion_by_resource_tier_k1.png`; source table: `results/k_aware_analysis/tables/05_resource_tier_metrics_by_k_model.csv` |
+| Figure 5: Strict evasion by language-resource tier and model for `k=2` | Section 5.2 | `results/k_aware_analysis/figures/heatmap_evasion_by_resource_tier_k2.png`; source table: `results/k_aware_analysis/tables/05_resource_tier_metrics_by_k_model.csv` |
+| Figure 6: Strict evasion by language-resource tier and model for `k=3` | Section 5.2 | `results/k_aware_analysis/figures/heatmap_evasion_by_resource_tier_k3.png`; source table: `results/k_aware_analysis/tables/05_resource_tier_metrics_by_k_model.csv` |
+| Table 2: Deployment-aware guardrail performance across GuardBreach subsets | Section 5.3 | `results/k_aware_analysis/tables/01_model_metrics_by_k.csv`; coverage/completion support: `results/k_aware_analysis/tables/03_model_k_coverage_summary.csv` and `results/k_aware_analysis/tables/04_model_k_completion_matrix.csv` |
+| Figure 7: Strict evasion rate by LinguaGuard mitigation method across `k=1`, `k=2`, and `k=3` | Section 5.4 | `results/linguaguard_router_all_k/figures/linguaguard_strict_evasion_by_method_all_k.png`; source table: `results/linguaguard_router_all_k/tables/07_linguaguard_main_comparison_paper_all_k.csv` |
+| Figure 8: Unsafe recall by harm category and model for `k=2` | Appendix B | `results/k_aware_analysis/figures/heatmap_unsafe_recall_by_category_k2.png`; source table: `results/k_aware_analysis/tables/06_category_metrics_by_k_model.csv` |
+| Figure 9: Unsafe recall by harm category and model for `k=3` | Appendix B | `results/k_aware_analysis/figures/heatmap_unsafe_recall_by_category_k3.png`; source table: `results/k_aware_analysis/tables/06_category_metrics_by_k_model.csv` |
+| Figure 10: Radar summary of top guardrail deployment profiles across GuardBreach subsets | Appendix C | `results/k_aware_analysis/figures/radar_top_models_k1.png`, `results/k_aware_analysis/figures/radar_top_models_k2.png`, and `results/k_aware_analysis/figures/radar_top_models_k3.png`; source table: `results/k_aware_analysis/tables/01_model_metrics_by_k.csv` |
+| Figure 11: Pairwise model prediction agreement for `k=3` | Appendix D | `results/k_aware_analysis/figures/heatmap_model_agreement_k3.png`; generated from `results/k_aware_analysis/analysis_ready_flat.csv` |
+| Figure 12: Pairwise model prediction agreement for `k=1` | Appendix D | `results/k_aware_analysis/figures/heatmap_model_agreement_k1.png`; generated from `results/k_aware_analysis/analysis_ready_flat.csv` |
+| Figure 13: Pairwise model prediction agreement for `k=2` | Appendix D | `results/k_aware_analysis/figures/heatmap_model_agreement_k2.png`; generated from `results/k_aware_analysis/analysis_ready_flat.csv` |
+
+(**Optional to see the below mapping**) The following supporting outputs are used for paper claims but are not currently assigned separate numbered tables or figures in the draft.
+
+| Paper claim / analysis | Paper location | Artifact output |
+|---|---|---|
+| Strict evasion by model and `k` | Supports Table 2 and Section 5.3 | `results/k_aware_analysis/figures/heatmap_evasion_model_by_k.png` |
+| Unsafe recall by model and `k` | Supports Table 2 and Section 5.3 | `results/k_aware_analysis/figures/heatmap_unsafe_recall_model_by_k.png` and `results/k_aware_analysis/figures/line_unsafe_recall_by_k.png` |
+| Error and unknown-output behavior | Supports Section 5.3 | `results/k_aware_analysis/figures/line_error_rate_by_k.png`, `results/k_aware_analysis/figures/line_unknown_rate_by_k.png`, and `results/k_aware_analysis/tables/03_model_k_coverage_summary.csv` |
+| Normalization audit | Supports Section 4.6 | `results/k_aware_analysis/tables/11_normalization_audit.csv` |
+| Language-level rankings | Supports Section 4.9 and appendix analysis | `results/k_aware_analysis/tables/12_per_language_model_scores_by_k.csv`, `results/k_aware_analysis/tables/13_top10_models_per_language_by_k.csv`, and `results/k_aware_analysis/tables/14_best_model_per_language_by_k.csv` |
+| Best-model language win counts | Supports language-level analysis | `results/k_aware_analysis/figures/bar_best_model_win_counts_k1.png`, `results/k_aware_analysis/figures/bar_best_model_win_counts_k2.png`, `results/k_aware_analysis/figures/bar_best_model_win_counts_k3.png`, and `results/k_aware_analysis/tables/15_model_language_win_counts_by_k.csv` |
+| Translation-quality effects | Supports Sections 4.2, 4.6, and limitations | `results/k_aware_analysis/tables/08_quality_bucket_metrics_by_k_model.csv`, `results/k_aware_analysis/tables/17_quality_detection_correlations_by_k.csv`, and `results/k_aware_analysis/figures/line_combined_score_bin_evasion_by_k.png` |
+| Prompt-length sensitivity | Supporting robustness analysis | `results/k_aware_analysis/figures/line_prompt_len_bin_evasion_by_k.png` |
+| LinguaGuard selected global top-3 models | Supports Section 5.4 | `results/linguaguard_router_all_k/tables/03_linguaguard_top3_global_all_k.csv` |
+| LinguaGuard selected resource-tier top-3 models | Supports Section 5.4 | `results/linguaguard_router_all_k/tables/04_linguaguard_top3_per_resource_tier_all_k.csv` |
+| LinguaGuard selected per-language top-3 models | Supports Section 5.4 | `results/linguaguard_router_all_k/tables/05_linguaguard_top3_per_language_all_k.csv` |
+| LinguaGuard per-language improvement | Supports Section 5.4 and appendix analysis | `results/linguaguard_router_all_k/tables/08_linguaguard_per_language_improvement_all_k.csv` and `results/linguaguard_router_all_k/tables/09_linguaguard_language_improvement_summary_all_k.csv` |
+| LinguaGuard prediction audit | Reproducibility audit | `results/linguaguard_router_all_k/audit/linguaguard_test_predictions_audit_all_k.csv` |
 
 ---
 
@@ -335,46 +373,15 @@ Recommended reviewer workflow under limited compute:
 
 1. Inspect dataset schemas and sample rows.
 2. Run `dataset_stats_by_k.py` on the provided benchmark files.
-3. Run `guardbreach_k_aware_result_analysis.py` on provided `data/Classified/*.jsonl` files.
-4. Run `linguaguard_router_all_k_paper_only.py` on the generated `analysis_ready_flat.csv`.
+3. Run `k_aware_result_analysis.py` on provided `data/classified/*.jsonl` files.
+4. Run `linguaguard_router_all_k.py` on the generated `analysis_ready_flat.csv` (this file is not uploaded because of size, it will be generated by the code).
 5. Optionally rerun a small classifier subset for one model and one `k` file to verify functionality.
-
----
-
-## 9. Double-blind and Open Science compliance checklist
-
-Before uploading the artifact to an anonymous repository, run these checks from the artifact root:
-
-```bash
-grep -R -nE "malam|Jahangir|UTEP|SUPREME|University of Texas|@utep|@siu|/home/|/Users/|C:\\Users|github.com/[^ ]+" . || true
-find . -name ".git" -type d -print
-find . -name "*.log" -type f -print
-find . -name "*.out" -type f -print
-```
-
-Required actions before submission:
-
-- Replace all absolute local paths with `$PROJECT_ROOT` or relative paths.
-- Remove local usernames from scripts, README files, comments, docstrings, logs, and shell commands.
-- Remove author names, affiliations, email addresses, acknowledgments revealing identity, institutional compute-cluster names, and non-anonymous GitHub URLs.
-- Remove `.git/` history before upload, or use an anonymous repository tool that rewrites history.
-- Ensure the anonymous artifact link has no tracking and remains accessible through the full review period.
-- Freeze artifact contents after the allowed artifact grace period.
-- Explicitly document any omitted or restricted artifacts and why they cannot be released.
-
-Known issue to fix in the current uploaded scripts: several examples/defaults contain absolute paths of the form `/home/<local-user>/...`. These must be replaced with relative paths or `$PROJECT_ROOT` before the artifact is uploaded for double-blind review.
-
 ---
 
 ## 10. Current artifact limitations
 
-- Dataset generation and translation scripts are not yet included. They should be added before the final artifact freeze, or the Open Science Appendix should explicitly explain their omission.
 - Some model weights may require external access approval or acceptance of model licenses.
 - Some prompt text or model outputs may require restricted release due to safety or licensing concerns.
 - `k=3` is a partial stress test and should not be interpreted as a complete all-model comparison.
 
 ---
-
-## 11. Contact during anonymous review
-
-During double-blind review, do not include direct author contact information in this README. Reviewers should use the conference review system for artifact questions.
